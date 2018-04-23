@@ -1,6 +1,5 @@
 package com.arch.moreores;
 
-import org.bukkit.ChatColor;
 
 public class Logger {
 
