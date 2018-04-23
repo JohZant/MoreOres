@@ -1,0 +1,46 @@
+##################################################
+#
+# Written By JohZant
+#
+##################################################
+
+#Whether or not MoreOres is enabled.
+#This can be changed in game, but on reload, MoreOres will use this value
+enabled: true
+
+#Turn this on to see your console destroyed
+#Not joking.... This will put a lot of junk from MoreOres into your console
+# Great for fixing things and testing.... Not so great for anything else
+debug: false
+
+#if allblocks is true, all blocks that drop items will
+allblocks: true
+allblocks_chance: 25
+allblocks_multiplier: 2
+allblocks_exp: true
+
+
+#Add ores under "Ores:" that you which to up the drops of. This does nto ahev to be Ores, it can be blocks
+# Ores have to be by minecraft name. i.e. DIAMONE_ORE, COAL_ORE, STONE
+# This part of the config is disregarded if "allblocks" is set to true
+Ores:
+  DIAMOND_ORE:
+    chance: 10 #Chance that Ore will drop more materials. Set to 0 for no chance
+    multiplier: 2 #How much should we multiple the drops by?
+    include_experience: true #Multiply Experience drop as well?
+  GOLD_ORE:
+    chance: 25
+    multiplier: 2
+    include_experience: true
+  COAL_ORE:
+    chance: 75
+    multiplier: 2
+    include_experience: true
+  LAPIS_ORE:
+    chance: 25
+    multiplier: 2
+    include_experience: true
+  REDSTONE_ORE:
+    chance: 5
+    multiplier: 2
+    include_experience: true
