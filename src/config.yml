@@ -8,6 +8,11 @@
 #This can be changed in game, but on reload, MoreOres will use this value
 enabled: true
 
+#Set the prefix that will come up in messages to users or in console
+#This doesn't really need to be touched unless you wanna claim that you use
+#a custom plugin that you created. Supports Colour Codes
+prefix: '&6[MoreOres] '
+
 #Turn this on to see your console destroyed
 #Not joking.... This will put a lot of junk from MoreOres into your console
 # Great for fixing things and testing.... Not so great for anything else

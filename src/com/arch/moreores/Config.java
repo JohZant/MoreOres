@@ -17,12 +17,18 @@ public class Config {
     public int allBlocks_multiplier;
     public boolean allBlocks_exp;
 
+    //prefix
+    public String prefix;
+
     public Config(MoreOres plugin) {
         this.plugin = plugin;
     }
 
     public void loadConfig() {
         FileConfiguration c = plugin.getConfig();//load up config file
+
+        //get prefix
+        prefix = ChatColor.translateAlternateColorCodes('$', c.getString("prefix")) + ChatColor.RESET;
 
         enabled = c.getBoolean("enabled");
         //write out to console whether or not we are enabled
