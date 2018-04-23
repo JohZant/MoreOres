@@ -28,7 +28,7 @@ public class Config {
         FileConfiguration c = plugin.getConfig();//load up config file
 
         //get prefix
-        prefix = ChatColor.translateAlternateColorCodes('$', c.getString("prefix")) + ChatColor.RESET;
+        prefix = ChatColor.translateAlternateColorCodes('&', c.getString("prefix")) + ChatColor.RESET;
 
         enabled = c.getBoolean("enabled");
         //write out to console whether or not we are enabled
@@ -36,6 +36,7 @@ public class Config {
             plugin.console.log(ChatColor.GREEN + "Enabled");
         } else {
             plugin.console.log(ChatColor.RED + "Disabled");
+            return;
         }
 
         //gets debug value

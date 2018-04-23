@@ -11,8 +11,8 @@ import java.util.Random;
 public class MoreOres extends JavaPlugin {
     Config config;//config file
     Logger console;//logging object
-    List<Ore> ores;//
-    Random rnd;
+    List<Ore> ores;//list of ores that we are listening out for
+    Random rnd;//cheeky rando
 
     @Override
     public void onEnable() {
@@ -34,7 +34,7 @@ public class MoreOres extends JavaPlugin {
         /*register Listener */
         getServer().getPluginManager().registerEvents(new MoreOresListener(this), this);
         //setup commands
-        //this.getCommand("moreores").setExecutor(new MoreOresCommands(this));
+        this.getCommand("moreores").setExecutor(new MoreOresCommands(this));
     }
 
     /*Fired when the server stops and disables plugins*/
