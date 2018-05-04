@@ -70,6 +70,28 @@ public class MoreOresCommands implements CommandExecutor {
             }
             sender.sendMessage(plugin.config.prefix + ChatColor.RED + "Disabled");
         }
+        else if(args[0].toLowerCase().equals("debug")){
+            //toggles the debugger
+
+            //test that user has permission
+            if (!sender.hasPermission("moreores.admin.debug")){
+                sender.sendMessage(plugin.config.prefix + ChatColor.RED + "You do not have permission to run that command.");
+                return true;
+            }
+
+            if (plugin.config.debug){
+                //turn debug off
+                plugin.config.debug = false;
+                sender.sendMessage(plugin.config.prefix + ChatColor.RED + " Debugger Disabled");
+                plugin.console.log(ChatColor.RED + "Debugger Disabled");
+            }
+            else{
+                //turn debug on
+                plugin.config.debug = true;
+                sender.sendMessage(plugin.config.prefix + ChatColor.GREEN + " Debugger Enabled");
+                plugin.console.log(ChatColor.GREEN + "Debugger Enabled");
+            }
+        }
         else{
             //The command is not known so is not handled.
             sender.sendMessage(plugin.config.prefix + ChatColor.RED + "Unknown Command.");

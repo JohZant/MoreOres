@@ -20,3 +20,4 @@ permissions:
      children:
        moreores.admin.reload: true
        moreores.admin.toggle: true
+       moreores.admin.debug: true
