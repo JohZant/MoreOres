@@ -1,6 +1,7 @@
 package com.arch.moreores;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -33,15 +34,26 @@ public class MoreOresListener implements Listener {
             return;
         }
 
-        Player player;
+        Player player = event.getPlayer();
+        //message for debug
+        String debugMSG = "";
+        //test if player is in creative
+        if (player.getGameMode().equals(GameMode.CREATIVE)){
+            //don't drop anything
+            if (plugin.config.debug) {
+                debugMSG = ChatColor.DARK_GREEN + "[DEBUG]"
+                        + ChatColor.YELLOW + "[" + player.getDisplayName() + "]"
+                        + ChatColor.RESET;
+                plugin.console.log(debugMSG + "Player in Creative Mode. Not Dropping Items.");
+            }
+            return;
+        }
 
         Block block = event.getBlock();
 
-        //message for debug
-        String debugMSG = "";
+
         String blockLocation = "";
         if (plugin.config.debug) {
-            player = event.getPlayer();
             debugMSG = ChatColor.DARK_GREEN + "[DEBUG]"
                     + ChatColor.YELLOW + "[" + player.getDisplayName() + "]"
                     + ChatColor.BLUE + "[" + block.getType().name() + "]"
@@ -125,23 +137,25 @@ public class MoreOresListener implements Listener {
             }
 
             Collection<ItemStack> droppedItems = event.getBlock().getDrops();//get what ever was dropped
+            int initialDrop = 0;//variable to hold how many items were dropped to begin with
             //drop an extra item per drop
             for (ItemStack i : droppedItems) {
+                initialDrop = i.getAmount();
+                i.setAmount(i.getAmount()*tempOre.getMultiplier() - 1);//set amount to drop
 
                 //debug
                 if (plugin.config.debug) {
                     plugin.console.log(debugMSG
                             + " Drop: " + i.getType().name()
-                            + " Amount: " + i.getAmount()
+                            + " Amount: " + initialDrop
                             + " Multiplier: " + tempOre.getMultiplier()
-                            + " Total Given: " + ((i.getAmount() * tempOre.getMultiplier()))
+                            + " Extra Given: " + (i.getAmount())
                             + blockLocation
                     );
                 }
 
                 event.getBlock().getWorld().dropItemNaturally(
-                        event.getBlock().getLocation(),
-                        new ItemStack(i.getType(), (i.getAmount() * tempOre.getMultiplier()) - i.getAmount(), i.getType().getMaxDurability())
+                        event.getBlock().getLocation(), i
                 );
             }
 
