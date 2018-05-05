@@ -35,6 +35,7 @@ public class MoreOres extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MoreOresListener(this), this);
         //setup commands
         this.getCommand("moreores").setExecutor(new MoreOresCommands(this));
+        this.getCommand("moreores").setTabCompleter(new TabComplete());
     }
 
     /*Fired when the server stops and disables plugins*/
